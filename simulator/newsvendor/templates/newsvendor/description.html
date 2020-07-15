@@ -1,0 +1,57 @@
+<!-- {% load static %} -->
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Description</title>
+        <style>
+            body{
+                
+                 width: 500px;
+                 margin-right:auto;
+                 margin-left: auto;
+                 height:600px ;
+                 overflow:scroll;
+                 align-content: center;
+            }
+            div{
+                border:3px solid green;
+            }
+            
+        </style>
+        <!-- <link href="{% static 'newsvendor/description.css' %}" rel="stylesheet"> -->
+    </head>
+    <body>
+        <form action="{% url 'newsvendor:round' %}" method="POST">
+        {% csrf_token %}
+       <div>
+           <p>The overflow property specifies whether to clip content or to add scrollbars when an element's content is too big to fit in a specified area.</p>
+           <p>The overflow property specifies whether to clip content or to add scrollbars when an element's content is too big to fit in a specified area.</p>
+           <p>The overflow property specifies whether to clip content or to add scrollbars when an element's content is too big to fit in a specified area.</p>
+           <p>The overflow property specifies whether to clip content or to add scrollbars when an element's content is too big to fit in a specified area.</p>
+           <p>The overflow property specifies whether to clip content or to add scrollbars when an element's content is too big to fit in a specified area.</p>
+           <p>The overflow property specifies whether to clip content or to add scrollbars when an element's content is too big to fit in a specified area.</p>
+           <p>The overflow property specifies whether to clip content or to add scrollbars when an element's content is too big to fit in a specified area.</p>
+       </div>
+       
+        <p>Please select your gender:</p>
+        <input type="radio" id="male" name="gender" value="male">
+        <label for="male">Male</label><br>
+        <input type="radio" id="female" name="gender" value="female">
+        <label for="female">Female</label><br>
+        <input type="radio" id="other" name="gender" value="other">
+        <label for="other">Other</label>
+      
+        <br>  
+      
+        <p>Please select your age:</p>
+        <input type="radio" id="age1" name="age" value="30">
+        <label for="age1">0 - 30</label><br>
+        <input type="radio" id="age2" name="age" value="60">
+        <label for="age2">31 - 60</label><br>  
+        <input type="radio" id="age3" name="age" value="100">
+        <label for="age3">61 - 100</label><br><br>
+        <input type="submit" value="Submit">
+      </form>
+    </body>
+</html>
