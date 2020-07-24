@@ -13,6 +13,7 @@
         <section id='main'>
             
             <form>
+                {% csrf_token %}
             <section id=first >
                 <div class="logo">
                     <img src="{% static 'newsvendor/logo.png' %}" alt="logo">
@@ -85,54 +86,58 @@
 
                 <div class="row">
                     <div class="column">
-                        <p>Please select your gender:</p>
-                        <input type="radio" id="male" name="gender" value="male">
-                        <label for="male">Male</label><br>
-                        <input type="radio" id="female" name="gender" value="female">
-                        <label for="female">Female</label><br>
-                        <input type="radio" id="other" name="gender" value="other">
-                        <label for="other">Other</label>
+                        <div>
+                        <p><label for="gender">Please select your gender:</label></p>
+                        <select id="gender" name="gender">
+                            <option value="male">Male</option>
+                            <option value="Female">Female</option>
+                            <option value="Other">Other</option>
+                          </select>
+                        </div>
 
-                        <p>Please select your age:</p>
-                        <input type="radio" id="age1" name="age" value="30">
-                        <label for="age1">0 - 30</label><br>
-                        <input type="radio" id="age2" name="age" value="60">
-                        <label for="age2">31 - 60</label><br>  
-                        <input type="radio" id="age3" name="age" value="100">
-                        <label for="age3">61 - 100</label><br><br>
+                        <div>
+                         <p><label for="gender">Please select your age:</label></p> 
+                          <select id="age" name="age">
+                              <option value="age1">0 - 30</option>
+                              <option value="age2">31 - 60</option>
+                              <option value="age3">61 - 100</option>
+                            </select>
+                        </div>
+
                     </div>
                     <div class="column">
-                        <p>Please select your organisation:</p>
-                        <input type="radio" id="Management" name="organisation" value="management">
-                        <label for="Management">Management</label><br>
-                        <input type="radio" id="Engineering" name="organisation" value="engineering">
-                        <label for="Engineering">Engineering</label><br>
-                        <input type="radio" id="other" name="organisation" value="other">
-                        <label for="other">Other</label>
-
-                        <p>Please select your designation:</p>
-                        <input type="radio" id="Student" name="designation" value="Student">
-                        <label for="Student">Student</label><br>
-                        <input type="radio" id="Professor" name="designation" value="Professor">
-                        <label for="Professor">Professor</label><br>
-                        <input type="radio" id="other" name="designation" value="other">
-                        <label for="other">Other</label>
+                        <div>
+                       <p><label for="organisation">Please select your organisation:</label></p> 
+                        <select id="organisation" name="organisation">
+                            <option value="Management">Management</option>
+                            <option value="Engineering">Engineering</option>
+                            <option value="Other">Other</option>
+                          </select>
+                        </div>
+                        <div>
+                        
+                        <p> <label for="designation">Please select your designation:</label></p>   
+                        <select id="designation" name="designation">
+                            <option value="Student">Student</option>
+                            <option value="Professor">Professor</option>
+                            <option value="Other">Other</option>
+                          </select>
+                        </div>
                     </div>
                 </div>
                 <p><button id="secondsubmit" style="width:auto;">Next</button></p> 
             </section>
 
             <section id="third">
-    
+                
                 <div class="logo">
                     <img src="{% static 'newsvendor/logo.png' %}" alt="logo">
                 </div>
     
                 <div class="topnav">
                    <p> Decomposed Newsvendor Model</p>
-                    
                 </div>
-                <h1 style="text-align: left;">Round :{{que.qid}}</h1>
+                <h1 id="round"style="text-align: left;">Round : 1</h1>
                 
                 
                 <div class="row">
@@ -177,6 +182,7 @@
             }
             var user=new Object();
             let rounds=[];
+            id=1;
 
             document.addEventListener('DOMContentLoaded',()=>{
                 var modal=document.getElementById('ethics');
@@ -216,7 +222,7 @@
             
             document.getElementById('secondsubmit').onclick=function(){
                 // user.name=document.getElementById("name").value;
-                // user.gender=document.getElementByName('gender').value;
+                // user.gender=document.getElementById('gender').value;
                 // user.age=document.getElementsByName('age').value;
                 // user.organisation=document.getElementsByName('organisation').value;
                 // user.designation=document.getElementsByName('designation').value;
@@ -228,8 +234,8 @@
 
             document.getElementById('roundSub').onclick=function(){
                 //let round={
-                //     id:user.id;
-                //     qid:question.qid;
+                //     id:{{user.id}};
+                //     qid:{{question.qid}};
                 //     point_forecast:document.getElementById('forecast').value,
                 //     LB:document.getElementById('LB').value,
                 //     UB:document.getElementById('UB').value,
@@ -237,10 +243,14 @@
                 // }
                 // rounds.push(round);
 
-                document.getElementById('forecast').reset();
-                document.getElementById('LB').reset();
-                document.getElementById('UB').reset();
-                document.getElementById('fill').reset();
+                document.getElementById('forecast').value="";
+                document.getElementById('LB').value="";
+                document.getElementById('UB').value="";
+                document.getElementById('fill').value="";
+
+                 id++;   
+                
+                document.querySelector(h1.getElementById('#round')).innerHTML=id;
                 return false;
             }
             })
