@@ -2,6 +2,7 @@ from django.http import HttpResponse,HttpResponseRedirect
 from django.shortcuts import render
 from django.urls import reverse
 from django import forms
+from . import models
 
 from .models import question,user,answer
 
@@ -9,23 +10,37 @@ from .models import question,user,answer
 # Create your views here.
 
 def index(request):
-     return render(request,"newsvendor/index.html",{
+    return render(request,"newsvendor/index.html",{
          "questions":question.objects.all()
      })
 
+'''
+def add(request):
+    # form=NewTaskForm(request.POST)
+    # if form.is_valid():
+    #     email=form.cleaned_data["email"]
+    #     email_id.append(email)
+    # if email in email_id:
+    #     return HttpResponseRedirect(reverse("newsvendor:index"))
+    # else:
+        
+        return render(request,"newsvendor/description.html")
+
+def round(request):
+    return render(request,"newsvendor/round.html")
+'''
+
+def validateEmail(request):
+    email_id = request.GET['email']
+    try:
+        a = user.objects.get(email=email_id)
+    except:
+        a = None
+
+    if a:
+        HttpResponse('Success')
+    else:
+        HttpResponse("Failure")
 
 
-# def add(request):
-#     if request.method=="POST":
-#         if request.POST.get('email'):
-#             saveEmail=user()
-#             saveEmail.email=request.POST.get('email')
-#             saveEmail.save()
-#             return render(request,"newsvendor/description.html")
-#         else:
-#             return httpResponseRedirect(reverse('index'))
 
-# def round(request):
-    
-
-#     return render(request,"newsvendor/round.html")
