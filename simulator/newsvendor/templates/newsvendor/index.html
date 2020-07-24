@@ -148,7 +148,7 @@
                         <p><h2><label for="forecast">Point Forecast</label>
                         <input type="number" id="forecast" name="point_forecast"></h2></p>
                         <h3><p><label for="LB">Lower Bound</label>
-                        <input type="number" id="LB" name="LB"> 
+                        <input type="number" id="LB" name="LB" onchange="calculate()"> 
                         </p><p>
                         <label for="UB">Upper Bound</label>
                         <input type="UB" id="UB" name="UB">
@@ -168,6 +168,12 @@
 
         </section>
         <script>
+            calculate=function()
+            {
+                var t=document.getElementById('LB').value;
+                var mean=document.getElementById('forecast').value;
+                document.getElementById('UB').value=Math.exp(2*Math.log(mean)-Math.log(t));
+            }
             var user=new Object();
             let rounds=[];
 
@@ -187,7 +193,8 @@
                 document.getElementById('second').style.display='block';
                 return false;
             }
-
+            
+            
             document.getElementById('secondsubmit').onclick=function(){
                 // user.name=document.getElementById("name").value;
                 // user.gender=document.getElementByName('gender').value;
