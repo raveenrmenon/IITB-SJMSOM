@@ -2,6 +2,7 @@ from django.http import HttpResponse,HttpResponseRedirect
 from django.shortcuts import render
 from django.urls import reverse
 from django import forms
+from . import models
 
 email_id=[]
 
@@ -26,3 +27,16 @@ def add(request):
 
 def round(request):
     return render(request,"newsvendor/round.html")
+
+
+def validateEmail(request):
+    email_id = request.GET['email']
+    try:
+        a = user.objects.get(email=email_id)
+    except:
+        a = None
+
+    if a:
+        HttpResponse('Success')
+    else:
+        HttpResponse("Failure")
