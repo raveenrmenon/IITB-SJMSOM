@@ -25,9 +25,9 @@
     border:3px solid green;
   }
 body{
-    display:flex;
-    /* justify-content: center; */
-    /* align-items: center; */
+   
+    justify-content: center; 
+    align-items: center; 
     height:500px;
     font-size: large;
     text-align: center;
