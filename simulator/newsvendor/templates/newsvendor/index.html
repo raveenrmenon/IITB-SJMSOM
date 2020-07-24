@@ -167,6 +167,7 @@
             </form>
 
         </section>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
         <script>
             calculate=function()
             {
@@ -189,8 +190,26 @@
             document.getElementById('firstsubmit').onclick=function(){
                 
                 user.email=document.getElementById('email').value;
-                document.getElementById('first').style.display='none';
-                document.getElementById('second').style.display='block';
+                $.ajax(
+                {
+                    type:"GET",
+                    url: "/checkEmail",
+                    data:{
+                             email: user.email
+                    },
+                    success: function( data ) 
+                    {
+                        if(data=='False')
+                        {
+                            document.getElementById('first').style.display='none';
+                            document.getElementById('second').style.display='block';
+                        }
+                        else
+                        {
+                            alert("you have already taken the survey. ")
+                        }
+                    }
+                 })
                 return false;
             }
             
