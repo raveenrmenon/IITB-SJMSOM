@@ -11,17 +11,18 @@
     </head>
     <body>
         <section id='main'>
-            <div class="logo">
-                <img src="{% static 'newsvendor/logo.png' %}" alt="logo">
-            </div>
-
-            <div class="topnav">
-               <p> Decomposed Newsvendor Model</p>
-                
-            </div>
-
+            
             <form>
             <section id=first >
+                <div class="logo">
+                    <img src="{% static 'newsvendor/logo.png' %}" alt="logo">
+                </div>
+    
+                <div class="topnav">
+                   <p> Decomposed Newsvendor Model</p>
+                    
+                </div>
+    
                 <div>
                     <h1>Thanks for accepting our request!</h1>
                 </div>
@@ -66,88 +67,109 @@
             </section>
 
             <section id="second">
+                <div class="logo">
+                    <img src="{% static 'newsvendor/logo.png' %}" alt="logo">
+                </div>
+    
+                <div class="topnav">
+                   <p> Decomposed Newsvendor Model</p>
+                    
+                </div>
+
+                <h1 style="text-align: left;">Demographics</h1>
+    
                 <div>
                     <label for="name">Enter your Name</label>
                     <input type="text" id="name" name="name">
                 </div>
 
+                <div class="row">
+                    <div class="column">
+                        <p>Please select your gender:</p>
+                        <input type="radio" id="male" name="gender" value="male">
+                        <label for="male">Male</label><br>
+                        <input type="radio" id="female" name="gender" value="female">
+                        <label for="female">Female</label><br>
+                        <input type="radio" id="other" name="gender" value="other">
+                        <label for="other">Other</label>
 
-                <p>Please select your gender:</p>
-                <input type="radio" id="male" name="gender" value="male">
-                <label for="male">Male</label><br>
-                <input type="radio" id="female" name="gender" value="female">
-                <label for="female">Female</label><br>
-                <input type="radio" id="other" name="gender" value="other">
-                <label for="other">Other</label>
+                        <p>Please select your age:</p>
+                        <input type="radio" id="age1" name="age" value="30">
+                        <label for="age1">0 - 30</label><br>
+                        <input type="radio" id="age2" name="age" value="60">
+                        <label for="age2">31 - 60</label><br>  
+                        <input type="radio" id="age3" name="age" value="100">
+                        <label for="age3">61 - 100</label><br><br>
+                    </div>
+                    <div class="column">
+                        <p>Please select your organisation:</p>
+                        <input type="radio" id="Management" name="organisation" value="management">
+                        <label for="Management">Management</label><br>
+                        <input type="radio" id="Engineering" name="organisation" value="engineering">
+                        <label for="Engineering">Engineering</label><br>
+                        <input type="radio" id="other" name="organisation" value="other">
+                        <label for="other">Other</label>
 
-                <p>Please select your age:</p>
-                <input type="radio" id="age1" name="age" value="30">
-                <label for="age1">0 - 30</label><br>
-                <input type="radio" id="age2" name="age" value="60">
-                <label for="age2">31 - 60</label><br>  
-                <input type="radio" id="age3" name="age" value="100">
-                <label for="age3">61 - 100</label><br><br>
-                
-                
-                <p>Please select your organisation:</p>
-                <input type="radio" id="Management" name="organisation" value="management">
-                <label for="Management">Management</label><br>
-                <input type="radio" id="Engineering" name="organisation" value="engineering">
-                <label for="Engineering">Engineering</label><br>
-                <input type="radio" id="other" name="organisation" value="other">
-                <label for="other">Other</label>
-
-                <p>Please select your designation:</p>
-                <input type="radio" id="Student" name="designation" value="Student">
-                <label for="Student">Student</label><br>
-                <input type="radio" id="Professor" name="designation" value="Professor">
-                <label for="Professor">Professor</label><br>
-                <input type="radio" id="other" name="designation" value="other">
-                <label for="other">Other</label>
-
+                        <p>Please select your designation:</p>
+                        <input type="radio" id="Student" name="designation" value="Student">
+                        <label for="Student">Student</label><br>
+                        <input type="radio" id="Professor" name="designation" value="Professor">
+                        <label for="Professor">Professor</label><br>
+                        <input type="radio" id="other" name="designation" value="other">
+                        <label for="other">Other</label>
+                    </div>
+                </div>
                 <p><button id="secondsubmit" style="width:auto;">Next</button></p> 
             </section>
 
             <section id="third">
-
-            
-                HEllo
-                <!-- {% for que in questions %} -->
-                <div class="split left">
-                    <div class="centered">
+    
+                <div class="logo">
+                    <img src="{% static 'newsvendor/logo.png' %}" alt="logo">
+                </div>
+    
+                <div class="topnav">
+                   <p> Decomposed Newsvendor Model</p>
+                    
+                </div>
+                <h1 style="text-align: left;">Round :{{que.qid}}</h1>
+                
+                
+                <div class="row">
+                    <div class="column">
                       <img style="width:400px;height:200px;" src="{% static 'newsvendor/plots/1.png' %}" alt="Scatterplot">
-                        <p><h4><label >Underage Cost: {{que.CU}} </label></h4></p>
-                        <p><h4><label>Overage Cost: {{que.CO}}</label></h4></p>
-                       
+                        <p><h4><label >Underage Cost: 550 </label></h4></p>
+                        <p><h4><label>Overage Cost: 500</label></h4></p>
                     </div>
-               
-                  </div>
-                   
-                  <div class="split right">
-                    <div class="centered">
-                      <!-- <img src="img_avatar.png" alt="Avatar man"> -->
-                      <p><h2><label for="forecast">Point Forecast</label>
+                    
+                
+                    <div class="column" >
+                    
+                        <p><h2><label for="forecast">Point Forecast</label>
                         <input type="number" id="forecast" name="point_forecast"></h2></p>
-                      <h3><p><label for="LB">Lower Bound</label>
+                        <h3><p><label for="LB">Lower Bound</label>
                         <input type="number" id="LB" name="LB"> 
-                      </p><p>
+                        </p><p>
                         <label for="UB">Upper Bound</label>
                         <input type="UB" id="UB" name="UB">
-                    </p></h3>
+                        </p></h3>
         
-                    <p><h3><label for="fill">Target Fill Rate</label>
+                        <p><h3><label for="fill">Target Fill Rate</label>
                         <input type="fill" id="fill" name="target_fil_rate"></h3></p>
                     
-                    <p><button id="roundSub">Next</button>></p>
+                        <p><button id="roundSub" style="width:auto;">Next</button>></p>
+                
+                    </div>
+                    
                 </div>
-                  </div>
-                <!-- {% endfor %} -->
+                
             </section>
             </form>
 
         </section>
         <script>
             var user=new Object();
+            let rounds=[];
 
             document.addEventListener('DOMContentLoaded',()=>{
                 var modal=document.getElementById('ethics');
@@ -167,14 +189,35 @@
             }
 
             document.getElementById('secondsubmit').onclick=function(){
-                user.name=document.getElementById("name").value;
-                user.gender=document.getElementsByName('gender').value;
-                user.age=document.getElementsByName('age').value;
-                user.organisation=document.getElementsByName('organisation').value;
-                user.designation=document.getElementsByName('designation').value;
+                // user.name=document.getElementById("name").value;
+                // user.gender=document.getElementByName('gender').value;
+                // user.age=document.getElementsByName('age').value;
+                // user.organisation=document.getElementsByName('organisation').value;
+                // user.designation=document.getElementsByName('designation').value;
 
                 document.getElementById('second').style.display='none';
                 document.getElementById('third').style.display='block';
+<<<<<<< HEAD
+=======
+                return false;
+            }
+
+            document.getElementById('roundSub').onclick=function(){
+                //let round={
+                //     id:user.id;
+                //     qid:question.qid;
+                //     point_forecast:document.getElementById('forecast').value,
+                //     LB:document.getElementById('LB').value,
+                //     UB:document.getElementById('UB').value,
+                //     target_fill_rate:document.getElementById('fill').value
+                // }
+                // rounds.push(round);
+
+                document.getElementById('forecast').reset();
+                document.getElementById('LB').reset();
+                document.getElementById('UB').reset();
+                document.getElementById('fill').reset();
+>>>>>>> b405e2e6ee0541c71e7e75a8460602420ab8cd97
                 return false;
             }
             })
