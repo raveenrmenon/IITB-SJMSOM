@@ -1,8 +1,8 @@
-
+/* 
 body {
   font-family: Arial;
   color: black;
-}
+} */
 
 
 .split {
@@ -14,9 +14,9 @@ body {
   overflow-x: hidden;
   padding-top: 20px;
 }
-h1{
+/* h1{
     text-align: left;
-}
+} */
 
 .left {
   left: 0;
@@ -47,7 +47,5 @@ h1{
   height: 300px;
   margin-top:200px;
 }
-img{
-    width:400px;
-    height:200px;
-}
+
+    

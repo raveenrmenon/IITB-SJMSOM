@@ -1,3 +1,22 @@
+.logo {
+    background-color: grey;
+    text-align: center;
+    padding: 20px;
+  }
+  /* Style the top navigation bar */
+ .topnav {
+    overflow: hidden;
+    background-color: #333;
+    text-align:left;
+    display: block;
+    color: #f2f2f2;
+  } 
+  
+  
+  
+  .intro{
+    border:3px solid green;
+  }
 body{
     display:flex;
     justify-content: center;
@@ -5,5 +24,117 @@ body{
     height:500px;
     font-size: large;
     text-align: center;
-    
+    margin:0;
+    overflow:scroll;
+    margin-left:10px;
+    margin-right:10px;
+    margin-bottom:10px;
+    margin-top:150px;
+  }
+img{
+    width: 200px;
+    height:100px;
+    align-self: center;
+   
+  }
+  .footer {
+    padding: 20px;
+    text-align: center;
+    background: #ddd;
+    margin-top: 20px;
+  }
+button{
+  background-color: limegreen;
+  color=white;
+  padding:14px 20px;
+  width:100%;
+}
+button:hover {
+  opacity: 0.8;
+}
+/* The Modal (background) */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: scroll; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+  padding-top: 60px;
+}
+
+/* Modal Content/Box */
+.modal-content {
+  
+  background-color: #fefefe;
+  margin: 5px auto; /* 15% from the top and centered */
+  border: 1px solid #888;
+  width: 80%; /* Could be more or less, depending on screen size */
+  -webkit-animation: animatezoom 0.6s;
+  animation: animatezoom 0.6s
+}
+@-webkit-keyframes animatezoom{
+  from {-webkit-transform:scale(0)}
+  to{-webkit-transform:scale(1)}
+}
+@keyframes animatezoom{
+  from{transform: scale(0)}
+  to{transform:scale(1)}
+}
+/* section {
+  border: 3px solid #f1f1f1;
+} */
+
+#second{
+  display: none; /* Hidden by default */
+
+}
+#third{
+  display:none;
+}
+.split {
+  height: 100%;
+  width: 50%;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  overflow-x: hidden;
+  padding-top: 20px;
+}
+/* h1{
+    text-align: left;
+} */
+
+.left {
+  left: 0;
+  
+}
+
+.right{
+  right: 0;
+  margin: 100px;
+  margin-top: 100px;
+  margin-bottom: 100px;
+  border:3px solid green ;
+}
+/* 
+.centered {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-left: left 100px;;
+  transform: translate(-50%, -50%);
+  text-align:left;
+} */
+
+.centered{
+    float: left;
+  width: 50%;
+  padding: 10px;
+  height: 300px;
+  margin-top:200px;
 }

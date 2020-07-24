@@ -4,16 +4,17 @@ from django.urls import reverse
 from django import forms
 from . import models
 
-email_id=[]
+from .models import question,user,answer
 
-class NewTaskForm(forms.Form):
-    email=forms.EmailField(label="Enter your Email-Id:")
 
 # Create your views here.
 
 def index(request):
-    return render(request,"newsvendor/index.html")
+    return render(request,"newsvendor/index.html",{
+         "questions":question.objects.all()
+     })
 
+'''
 def add(request):
     # form=NewTaskForm(request.POST)
     # if form.is_valid():
@@ -27,7 +28,7 @@ def add(request):
 
 def round(request):
     return render(request,"newsvendor/round.html")
-
+'''
 
 def validateEmail(request):
     email_id = request.GET['email']
@@ -40,3 +41,6 @@ def validateEmail(request):
         HttpResponse('Success')
     else:
         HttpResponse("Failure")
+
+
+
