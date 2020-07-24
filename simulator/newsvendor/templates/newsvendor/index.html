@@ -4,15 +4,180 @@
 <html lang="en">
     <head>
         <title>Login</title>
-        <link href="{% static 'newsvendor/index.css' %}" rel="stylesheet">
+            <meta charset="UTF-8">
+            <link href="{% static 'newsvendor/index.css' %}" rel="stylesheet">
+            <meta name="viewport" content="width=device-width, initial-scale=1">
+          
     </head>
     <body>
-        <form action="{% url 'newsvendor:add' %}" method="POST" >
-            {% csrf_token %}
-            <h1><label for="email">Enter your Email-Id:</label>
-            <input type="email" id="email" name="email">
-            <p><input type="submit"></p>
-            </h1>
-        </form>
+        <section id='main'>
+            <div class="logo">
+                <img src="{% static 'newsvendor/logo.png' %}" alt="logo">
+            </div>
+
+            <div class="topnav">
+               <p> Decomposed Newsvendor Model</p>
+                
+            </div>
+
+            <form>
+            <section id=first >
+                <div>
+                    <h1>Thanks for accepting our request!</h1>
+                </div>
+
+                <div class="intro">
+                    <h3>
+                        Introduction:Task Decomposition and Newsvendor Decision Making
+                    </h3>
+                    <h5>
+                        In three behavioral laboratory experiments, we compare newsvendor ordering decisions made directly tonewsvendor ordering decisions made in a decomposed way by soliciting point forecasts, uncertainty judgments,and service level decisions. Decomposing orders in such a way can lead to performance improvements comparedto ordering directly. However, we also demonstrate that if the underlying demand uncertainty is too high, or if thecost structure emphasizes underage costs, decomposition may fail as a decision approach. Under such conditions,decision makers are prone to incorporate too much random judgment error or set service levels too high, whichreduces the efficacy of this decision approach. We further demonstrate that if accompanied by decision support inthe form of suggested quantities, task decomposition becomes the better performing approach to decision makingmore generally. Decision support and task decomposition therefore appear as complementary methods to improvedecision performance
+                    </h5>    
+                </div>
+                <div>
+                    <button onclick="document.getElementById('ethics').style.display='block'" style="width:auto;">Read Ethics</button>
+                </div>
+                <section id='ethics' class="modal">
+                    <div class="modal-content">
+                            <h2>Ethics </h2>
+                        <div style="border:3px solid green ;margin: auto;"
+                            <p>The overflow property specifies whether to clip content or to add scrollbars when an element's content is too big to fit in a specified area.</p>
+                            <p>The overflow property specifies whether to clip content or to add scrollbars when an element's content is too big to fit in a specified area.</p>
+                            <p>The overflow property specifies whether to clip content or to add scrollbars when an element's content is too big to fit in a specified area.</p>
+                            <p>The overflow property specifies whether to clip content or to add scrollbars when an element's content is too big to fit in a specified area.</p>
+                            <p>The overflow property specifies whether to clip content or to add scrollbars when an element's content is too big to fit in a specified area.</p>
+                            <p>The overflow property specifies whether to clip content or to add scrollbars when an element's content is too big to fit in a specified area.</p>
+                            <p>The overflow property specifies whether to clip content or to add scrollbars when an element's content is too big to fit in a specified area.</p>
+                        </div>
+                        <div>
+                            <button onclick="document.getElementById('ethics').style.display='none'" style="width:auto;">Close</button>
+                        </div>
+                    </div> 
+                </section>
+                <div>
+                    <h4>This survey takes approximately 5 mins.</h4>
+                </div>
+                <div class="footer">
+                    <h3><label for="email">Enter your Email:</label>
+                    <input type="email" id="email" name="email">
+                    <p><button id="firstsubmit" style="width:auto;">Next</button></p>
+                    </h3>
+                </div>
+            </section>
+
+            <section id="second">
+                <div>
+                    <label for="name">Enter your Name</label>
+                    <input type="text" id="name" name="name">
+                </div>
+
+
+                <p>Please select your gender:</p>
+                <input type="radio" id="male" name="gender" value="male">
+                <label for="male">Male</label><br>
+                <input type="radio" id="female" name="gender" value="female">
+                <label for="female">Female</label><br>
+                <input type="radio" id="other" name="gender" value="other">
+                <label for="other">Other</label>
+
+                <p>Please select your age:</p>
+                <input type="radio" id="age1" name="age" value="30">
+                <label for="age1">0 - 30</label><br>
+                <input type="radio" id="age2" name="age" value="60">
+                <label for="age2">31 - 60</label><br>  
+                <input type="radio" id="age3" name="age" value="100">
+                <label for="age3">61 - 100</label><br><br>
+                
+                
+                <p>Please select your organisation:</p>
+                <input type="radio" id="Management" name="organisation" value="management">
+                <label for="Management">Management</label><br>
+                <input type="radio" id="Engineering" name="organisation" value="engineering">
+                <label for="Engineering">Engineering</label><br>
+                <input type="radio" id="other" name="organisation" value="other">
+                <label for="other">Other</label>
+
+                <p>Please select your designation:</p>
+                <input type="radio" id="Student" name="designation" value="">
+                <label for="male">Management</label><br>
+                <input type="radio" id="Professor" name="designation" value="Professor">
+                <label for="female">Engineering</label><br>
+                <input type="radio" id="other" name="designation" value="other">
+                <label for="other">Other</label>
+
+                <p><button id="secondsubmit" style="width:auto;">Next</button></p> 
+            </section>
+
+            <section id="third">
+
+            
+                HEllo
+                <!-- {% for que in questions %} -->
+                <div class="split left">
+                    <div class="centered">
+                      <img style="width:400px;height:200px;" src="{% static 'newsvendor/plots/1.png' %}" alt="Scatterplot">
+                        <p><h4><label >Underage Cost: {{que.CU}} </label></h4></p>
+                        <p><h4><label>Overage Cost: {{que.CO}}</label></h4></p>
+                       
+                    </div>
+               
+                  </div>
+                   
+                  <div class="split right">
+                    <div class="centered">
+                      <!-- <img src="img_avatar.png" alt="Avatar man"> -->
+                      <p><h2><label for="forecast">Point Forecast</label>
+                        <input type="number" id="forecast" name="point_forecast"></h2></p>
+                      <h3><p><label for="LB">Lower Bound</label>
+                        <input type="number" id="LB" name="LB"> 
+                      </p><p>
+                        <label for="UB">Upper Bound</label>
+                        <input type="UB" id="UB" name="UB">
+                    </p></h3>
+        
+                    <p><h3><label for="fill">Target Fill Rate</label>
+                        <input type="fill" id="fill" name="target_fil_rate"></h3></p>
+                    
+                    <p><button id="roundSub">Next</button>></p>
+                </div>
+                  </div>
+                <!-- {% endfor %} -->
+            </section>
+            </form>
+
+        </section>
+        <script>
+            var user=new Object();
+
+            document.addEventListener('DOMContentLoaded',()=>{
+                var modal=document.getElementById('ethics');
+                window.onclick=function(event){
+                if(event.target==modal){
+                    modal.style.display="none";
+                }
+                return false;
+            }
+
+            document.getElementById('firstsubmit').onclick=function(){
+                
+                user.email=document.getElementById('email').value;
+                document.getElementById('first').style.display='none';
+                document.getElementById('second').style.display='block';
+                return false;
+            }
+
+            document.getElementById('secondsubmit').onclick=function(){
+                user.name=document.getElementById("name").value;
+                user.gender=document.getElementsByName('gender').value;
+                user.age=document.getElementsByName('age').value;
+                user.organisation=document.getElementsByName('organisation').value;
+                user.designation=document.getElementsByName('designation').value;
+
+                document.getElementById('second').style.display='none';
+                documnet.getElementById('third').style.display='block';
+                return false;
+            }
+            })
+        </script>
     </body>
 </html>
