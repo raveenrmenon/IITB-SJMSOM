@@ -1,4 +1,5 @@
 from django.http import HttpResponse,HttpResponseRedirect
+from django.views import View
 from django.shortcuts import render
 from django.urls import reverse
 from django import forms
@@ -30,17 +31,17 @@ def round(request):
     return render(request,"newsvendor/round.html")
 '''
 
-def validateEmail(request):
-    email_id = request.GET['email']
-    try:
-        a = user.objects.get(email=email_id)
-    except:
-        a = None
+class checkEmail(View):
+    def get(self, request):
+        email_id = request.GET['email']
+        a = user.objects.filter(email=email_id).exists()
+        return HttpResponse(a)
 
-    if a:
-        HttpResponse('Success')
-    else:
-        HttpResponse("Failure")
 
+ 
+# def checkEmail(request):
+#     email_id = request.GET['email']
+#     a = user.objects.filter(email=email_id).exists()
+#     return a
 
 

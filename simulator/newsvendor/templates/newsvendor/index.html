@@ -172,12 +172,13 @@
             </form>
 
         </section>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
         <script>
             calculate=function()
             {
                 var t=document.getElementById('LB').value;
                 var mean=document.getElementById('forecast').value;
-                document.getElementById('UB').value=Math.exp(2*Math.log(mean)-Math.log(t));
+                document.getElementById('UB').value=Math.round(Math.exp(2*Math.log(mean)-Math.log(t)));
             }
             var user=new Object();
             let rounds=[];
@@ -195,8 +196,26 @@
             document.getElementById('firstsubmit').onclick=function(){
                 
                 user.email=document.getElementById('email').value;
-                document.getElementById('first').style.display='none';
-                document.getElementById('second').style.display='block';
+                $.ajax(
+                {
+                    type:"GET",
+                    url: "/checkEmail",
+                    data:{
+                             email: user.email
+                    },
+                    success: function( data ) 
+                    {
+                        if(data=='False')
+                        {
+                            document.getElementById('first').style.display='none';
+                            document.getElementById('second').style.display='block';
+                        }
+                        else
+                        {
+                            alert("you have already taken the survey. ")
+                        }
+                    }
+                 })
                 return false;
             }
             
