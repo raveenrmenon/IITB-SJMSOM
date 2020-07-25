@@ -42,7 +42,7 @@
                 <section id='ethics' class="modal">
                     <div class="modal-content">
                             <h2>Ethics </h2>
-                        <div style="border:3px solid green ;margin: auto;"
+                        <div style="border:3px solid green ;margin: auto;">
                             <p>The overflow property specifies whether to clip content or to add scrollbars when an element's content is too big to fit in a specified area.</p>
                             <p>The overflow property specifies whether to clip content or to add scrollbars when an element's content is too big to fit in a specified area.</p>
                             <p>The overflow property specifies whether to clip content or to add scrollbars when an element's content is too big to fit in a specified area.</p>
@@ -137,37 +137,60 @@
                 <div class="topnav">
                    <p> Decomposed Newsvendor Model</p>
                 </div>
-                <h1<label for='round' style="text-align: left;">Round : 1</label><input type="number" id='round' name='round'</h1>
+                
                 
                 
                 <div class="row">
                     <div class="column">
+                        <div style="align-content:left;">
+                            <h1><p><label style="text-align: left;">Round :</label><label id="round" style="text-align:left">1</label></p></h1>
+                        </div>
                       <img style="width:400px;height:200px;" src="{% static 'newsvendor/plots/1.png' %}" alt="Scatterplot">
                         <div id="even">
-                            <p><h4><label for="CU">Underage Cost: 550 </label>
-                                <input type="number" id="CU" name="CU"></h4></p>
-                            <p><h4><label for="CO">Overage Cost: 500</label>
-                                <input type="number" id="CO" name="CO"></h4></p>
+                            <table style="width:100%">
+                                <tr>
+                                    <td>
+                                        <h4> <label>Underage Cost:</label>
+                                            <p> <label id="CU">CU</label></p></h4>
+                                    </td>
+                                    <td>
+                                        <h4><label>Overage Cost:</label>
+                                            <p><label id="CO">CO</label></p></h4>
+                                </td>
+                                </tr>
+                            </table>
                         </div>
                     </div>
                     
                 
                     <div class="column" >
-                    
-                        <p><h2><label for="forecast">Point Forecast</label>
-                        <input type="number" id="forecast" name="point_forecast"></h2></p>
-                        <h3><p><label for="LB">Lower Bound</label>
-                        <input type="number" id="LB" name="LB" onchange="calculate()"> 
-                        </p><p>
-                        <label for="UB">Upper Bound</label>
-                        <input type="number" id="UB" name="UB">
-                        </p></h3>
-        
-                        <p><h3><label for="fill">Target Fill Rate</label>
-                        <input type="number" id="fill" name="target_fil_rate" onfocus="show_cost()"></h3></p>
-                    
+                        <table style="width:100%; margin-top:100px;">
+                            <tr>
+
+                                <td>
+                                    <p><h3><label for="forecast">Point Forecast</label>
+                                        <input type="number" id="forecast" name="point_forecast"></h3></p>    
+                                </td>
+                                <td>
+                                    <h3><p><label for="LB">Lower Bound</label>
+                                        <input type="number" id="LB" name="LB" onchange="calculate()"> 
+                                        </p></h3>
+                                </td>
+                            </tr>
+                                <td>
+                                    <h3><p><label for="UB">Upper Bound</label>
+                                        <input type="number" id="UB" name="UB" onclick="show_cost()">
+                                        </p></h3>
+                                </td>
+                                <td>
+                                    <p><h3><label for="fill">Target Fill Rate</label>
+                                        <input type="number" id="fill" name="target_fil_rate" ></h3></p>
+                                </td>
+                            </tr>
+                        </table>
+
                         <p><button id="roundSub" style="width:auto;">Next</button></p>
-                
+                        </table>
                     </div>
                     
                 </div>
@@ -187,9 +210,9 @@
 
             show_cost=function()
             {
-                if(document.getElementById('even').style.display==='None'){
+                // if(document.getElementById('even').style.display=='None'){
                     document.getElementById('even').style.display="block";
-                }
+                // }
             }
             var user=new Object();
             
@@ -256,9 +279,11 @@
                         
                             document.getElementById('second').style.display='none';
                             document.getElementById('third').style.display='block';
-                            document.getElementById('CU').value=data.CU;
-                            document.getElementById('CO').value=data.CO;
-                            document.getElementById('round').value=data.qid;
+                            document.getElementById('CU').innerHTML=100;
+                            document.getElementById('CO').innerHTML=120;
+                            document.getElementById('round').innerHTML=1;
+
+                            
                     }
                 })
                 return false;
@@ -290,7 +315,7 @@
                             document.getElementById('third').style.display='block';
                             document.getElementById('CU').value=data.CU;
                             document.getElementById('CO').value=data.CO;
-                            document.getElementById('round').value=data.qid;
+                            document.getElementById('round').innerHTML=data.qid;
 
                             document.getElementById('forecast').value="";
                             document.getElementById('LB').value="";
