@@ -181,7 +181,7 @@
             }
             var user=new Object();
             let rounds=[];
-            id=1;
+            let count=1;
 
             document.addEventListener('DOMContentLoaded',()=>{
                 var modal=document.getElementById('ethics');
@@ -229,9 +229,9 @@
                 document.getElementById('UB').value="";
                 document.getElementById('fill').value="";
 
-                 id++;   
-                
-                document.querySelector(h1.getElementById('#round')).innerHTML=id;
+                count++;   
+                // if(question[count] is in questions)
+                document.getElementById('#round').innerHTML=count;
                 return false;
             }
             })
