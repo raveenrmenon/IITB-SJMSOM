@@ -178,7 +178,7 @@
             {
                 var t=document.getElementById('LB').value;
                 var mean=document.getElementById('forecast').value;
-                document.getElementById('UB').value=Math.exp(2*Math.log(mean)-Math.log(t));
+                document.getElementById('UB').value=Math.round(Math.exp(2*Math.log(mean)-Math.log(t)));
             }
             var user=new Object();
             let rounds=[];
