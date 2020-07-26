@@ -6,4 +6,5 @@ app_name="newsvendor"
 urlpatterns=[
     path("",index,name="index"),
     path("checkEmail",checkEmail.as_view()),
+    path("submit",submit.as_view()),
 ]
