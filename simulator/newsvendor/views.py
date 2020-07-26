@@ -1,4 +1,4 @@
-from django.http import HttpResponse,HttpResponseRedirect
+from django.http import HttpResponse,HttpResponseRedirect,JsonResponse
 from django.views import View
 from django.shortcuts import render
 from django.urls import reverse
@@ -20,39 +20,56 @@ class checkEmail(View):
         a = user.objects.filter(email=email_id).exists()
         return HttpResponse(a)
 
-class submit(View):
-    def post(self, request):
-        email = request.POST['email']
-        name = request.POST['name']
-        gender = request.POST['gender']
-        age = request.POST['age']
-        organisation = request.POST['organisation']
-        designation = request.POST['designation']
+class userSubmit(View):
+    def get(self, request):
+        uemail = request.GET['email']
+        uname = request.GET['name']
+        ugender = request.GET['gender']
+        uage = request.GET['age']
+        uorganisation = request.GET['organisation']
+        udesignation = request.GET['designation']
+
+        u = user(
+            name = uname,
+            email = uemail,
+            gender = ugender,
+            age = uage,
+            organisation = uorganisation,
+            designation = udesignation
+            )
+        u.save()
+        q = question.objects.get(qid = 1)
+        q = {   
+                'uid' : u.uid,
+                'qid' : q.qid,
+                'CO' : q.CO,
+                'CU' : q.CU,
+                'even' : q.even
+        }
+        return HttpResponse(q)
+
+
+class roundSubmit(View):
+    def get(self,request):
+        qid = request.GET['qid']
+        uid = request.GET['uid']
+        pf = request.GET['point_forecast']
+        lb = request.GET['LB']
+        ub = request.GET['UB']
+        target_fill_rate = request.GET['target_fill_rate']
+        a = answer(
+            uid = uid,
+            qid = qid,
+            point_forecast = pf,
+            LB = lb,
+            UB = ub,
+            target_fill_rate = target_fill_rate
+            )
+        a.save()
 
 
 
 
-'''
-def add(request):
-    # form=NewTaskForm(request.POST)
-    # if form.is_valid():
-    #     email=form.cleaned_data["email"]
-    #     email_id.append(email)
-    # if email in email_id:
-    #     return HttpResponseRedirect(reverse("newsvendor:index"))
-    # else:
-        
-        return render(request,"newsvendor/description.html")
 
-def round(request):
-    return render(request,"newsvendor/round.html")
-'''
-
-
- 
-# def checkEmail(request):
-#     email_id = request.GET['email']
-#     a = user.objects.filter(email=email_id).exists()
-#     return a
 
 

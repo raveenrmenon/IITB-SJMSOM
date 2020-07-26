@@ -99,12 +99,13 @@
         
                                 <div>
                                  <p><label for="gender">Please select your age:</label></p> 
-                                  <select id="age" name="age">
+                                 <input type="number" id="age" name="age" min = "1">
+                                  <!--<select id="age" name="age">
                                     <option disabled selected value> -- select an option -- </option>
                                       <option value="age1">0 - 30</option>
                                       <option value="age2">31 - 60</option>
                                       <option value="age3">61 - 100</option>
-                                    </select>
+                                    </select> -->
                                 </div>
         
                             </div>
@@ -301,32 +302,31 @@
             
             document.getElementById('secondsubmit').onclick=function(){
                  
-
+                user.email=document.getElementById('email').value;
                 user.name=document.getElementById("name").value;
                 user.gender=document.getElementById('gender').value;
-                user.age=document.getElementsByName('age').value;
-                user.organisation=document.getElementsByName('organisation').value;
-                user.designation=document.getElementsByName('designation').value;
+                user.age=document.getElementById('age').value;
+                user.organisation=document.getElementById('organisation').value;
+                user.designation=document.getElementById('designation').value;
                 $.ajax(
                 {
                     type:"GET",
-                    url: "",
+                    url: "/userSubmit",
                     data:{
-                            qid:1,
+                            email:user.email,
                             name:user.name,
                             gender:user.gender,
                             age:user.age,
                             organisation:user.organisation,
                             designation:user.designation,
-                            email: user.email
                     },
                     success: function( data ) 
                     {
-                        
+                            uid = data['uid'];
                             document.getElementById('second').style.display='none';
                             document.getElementById('third').style.display='block';
-                            document.getElementById('CU').innerHTML=100;
-                            document.getElementById('CO').innerHTML=120;
+                            document.getElementById('CU').innerHTML=data['CU'];
+                            document.getElementById('CO').innerHTML=data['CO'];
                             document.getElementById('round').innerHTML=1;
 
                             
@@ -338,7 +338,6 @@
             document.getElementById('roundSub').onclick=function(){
 
                 var question=new Object();
-
                 question.forecast=document.getElementById('forecast').value;
                 question.LB=document.getElementById('LB').value;
                 question.UB=document.getElementById('UB').value;
@@ -347,9 +346,9 @@
                 $.ajax(
                 {
                     type:"GET",
-                    url: "",
+                    url: "/roundSubmit",
                     data:{
-
+                        uid:uid,
                         point_forecast:question.forecast,
                         LB:question.LB,
                         UB:question.UB,
@@ -357,11 +356,10 @@
                     },
                     success: function( data ) 
                     {
-                            //document.getElementById('second').style.display='none';
                             document.getElementById('third').style.display='block';
-                            document.getElementById('CU').value=data.CU;
-                            document.getElementById('CO').value=data.CO;
-                            document.getElementById('round').innerHTML=data.qid;
+                            document.getElementById('CU').value=data['CU'];
+                            document.getElementById('CO').value=data['CO'];
+                            document.getElementById('round').innerHTML=data['qid'];
 
                             document.getElementById('forecast').value="";
                             document.getElementById('LB').value="";
