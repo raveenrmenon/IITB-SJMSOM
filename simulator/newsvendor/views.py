@@ -5,7 +5,7 @@ from django.urls import reverse
 from django import forms
 from . import models
 
-from .models import question,user,answer
+from .models import *
 
 
 # Create your views here.
@@ -14,6 +14,25 @@ def index(request):
     return render(request,"newsvendor/index.html",{
          "questions":question.objects.all()
      })
+
+
+class checkEmail(View):
+    def get(self, request):
+        email_id = request.GET['email']
+        a = user.objects.filter(email=email_id).exists()
+        return HttpResponse(a)
+
+class submit(request):
+    def post(self, request):
+        email = request.POST['email']
+        name = request.POST['name']
+        gender = request.POST['gender']
+        age = request.POST['age']
+        organisation = request.POST['organisation']
+        designation = request.POST['designation']
+
+
+
 
 '''
 def add(request):
@@ -30,12 +49,6 @@ def add(request):
 def round(request):
     return render(request,"newsvendor/round.html")
 '''
-
-class checkEmail(View):
-    def get(self, request):
-        email_id = request.GET['email']
-        a = user.objects.filter(email=email_id).exists()
-        return HttpResponse(a)
 
 
  

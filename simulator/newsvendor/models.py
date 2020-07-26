@@ -2,7 +2,7 @@ from django.db import models
 
 # Create your models here.
 class question(models.Model):
- 	qid = models.PositiveIntegerField()
+	qid = models.AutoField(primary_key=True)
  	CO = models.PositiveIntegerField()
  	CU = models.PositiveIntegerField()
  	even = models.BooleanField()
@@ -11,7 +11,7 @@ class question(models.Model):
 
 
 class user(models.Model):
- 	uid = models.PositiveIntegerField()
+	uid = models.AutoField(primary_key=True)
  	name = models.CharField(max_length=40)
  	email = models.EmailField()
  	gender = models.CharField(max_length=6)
