@@ -11,9 +11,7 @@ from .models import *
 # Create your views here.
 
 def index(request):
-    return render(request,"newsvendor/index.html",{
-         "questions":question.objects.all()
-     })
+    return render(request,"newsvendor/index.html")
 
 
 class checkEmail(View):
@@ -22,7 +20,7 @@ class checkEmail(View):
         a = user.objects.filter(email=email_id).exists()
         return HttpResponse(a)
 
-class submit(request):
+class submit(View):
     def post(self, request):
         email = request.POST['email']
         name = request.POST['name']
