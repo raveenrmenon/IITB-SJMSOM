@@ -38,34 +38,65 @@ class userSubmit(View):
             designation = udesignation
             )
         u.save()
-        q = question.objects.get(qid = 1)
+        que = question.objects.get(qid = 1)
         q = {   
                 'uid' : u.uid,
-                'qid' : q.qid,
-                'CO' : q.CO,
-                'CU' : q.CU,
-                'even' : q.even
+                'qid' : que.qid,
+                'CO' : que.CO,
+                'CU' : que.CU,
+                'even' : que.even
         }
-        return HttpResponse(q)
+        return JsonResponse(q)
 
 
 class roundSubmit(View):
     def get(self,request):
-        qid = request.GET['qid']
         uid = request.GET['uid']
+        qid = int(request.GET['qid'])
         pf = request.GET['point_forecast']
         lb = request.GET['LB']
         ub = request.GET['UB']
-        target_fill_rate = request.GET['target_fill_rate']
+        tf = request.GET['target_fill_rate']
+
         a = answer(
             uid = uid,
             qid = qid,
             point_forecast = pf,
             LB = lb,
             UB = ub,
-            target_fill_rate = target_fill_rate
+            target_fill_rate = tf
             )
         a.save()
+
+        if (qid+1) < 6:
+            newqid = qid+1
+            que = question.objects.get(qid = newqid)
+            q = {
+            'qid': que.qid,
+            'CO': que.CO,
+            'CU': que.CU,
+            'even': que.even
+            }
+            return JsonResponse(q)
+        else:
+            msg = 'Thank you for taking part in the survey'
+            return HttpResponse(msg)
+
+        # qid = request.GET['qid']
+        # uid = request.GET['uid']
+        # pf = request.GET['point_forecast']
+        # lb = request.GET['LB']
+        # ub = request.GET['UB']
+        # target_fill_rate = request.GET['target_fill_rate']
+        # a = answer(
+        #     uid = uid,
+        #     qid = qid,
+        #     point_forecast = pf,
+        #     LB = lb,
+        #     UB = ub,
+        #     target_fill_rate = target_fill_rate
+        #     )
+        # a.save()ro
 
 
 

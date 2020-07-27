@@ -323,11 +323,12 @@
                     success: function( data ) 
                     {
                             uid = data['uid'];
+                            currqid = data['qid'];
                             document.getElementById('second').style.display='none';
                             document.getElementById('third').style.display='block';
                             document.getElementById('CU').innerHTML=data['CU'];
                             document.getElementById('CO').innerHTML=data['CO'];
-                            document.getElementById('round').innerHTML=1;
+                            document.getElementById('round').innerHTML=data['qid'];
 
                             
                     }
@@ -349,6 +350,7 @@
                     url: "/roundSubmit",
                     data:{
                         uid:uid,
+                        qid:currqid,
                         point_forecast:question.forecast,
                         LB:question.LB,
                         UB:question.UB,
@@ -357,9 +359,10 @@
                     success: function( data ) 
                     {
                             document.getElementById('third').style.display='block';
-                            document.getElementById('CU').value=data['CU'];
-                            document.getElementById('CO').value=data['CO'];
+                            document.getElementById('CU').innerHTML=data['CU'];
+                            document.getElementById('CO').innerHTML=data['CO'];
                             document.getElementById('round').innerHTML=data['qid'];
+                            currqid = data['qid']
 
                             document.getElementById('forecast').value="";
                             document.getElementById('LB').value="";

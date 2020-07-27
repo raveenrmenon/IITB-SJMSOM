@@ -22,8 +22,8 @@ class user(models.Model):
 		return f"{self.name} - {self.email}"
 
 class answer(models.Model):
-	uid = models.ForeignKey(user, on_delete=models.DO_NOTHING,related_name='users')
-	qid = models.ForeignKey(question, on_delete=models.DO_NOTHING,related_name='questions')
+	uid = models.PositiveIntegerField()
+	qid = models.PositiveIntegerField()
 	point_forecast = models.PositiveIntegerField()
 	LB = models.PositiveIntegerField()
 	UB = models.PositiveIntegerField()
