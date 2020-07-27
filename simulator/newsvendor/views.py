@@ -9,6 +9,7 @@ from .models import *
 
 
 # Create your views here.
+no_of_questions = question.objects.count()
 
 def index(request):
     return render(request,"newsvendor/index.html")
@@ -68,7 +69,7 @@ class roundSubmit(View):
             )
         a.save()
 
-        if (qid+1) < 6:
+        if (qid+1) <= no_of_questions:
             newqid = qid+1
             que = question.objects.get(qid = newqid)
             q = {

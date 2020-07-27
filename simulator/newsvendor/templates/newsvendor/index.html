@@ -153,7 +153,7 @@
                 <div class="row">
                     <div class="column">
                         <div style="align-content:left;">
-                            <h1><p><label style="text-align: left;">Round :</label><label id="round" style="text-align:left">1</label></p></h1>
+                            <h1><p><label style="text-align: left;">Round :  </label><label id="round" style="text-align:left">1</label></p></h1>
                         </div>
                         <div class="card">
                             <img style="width:500px;height:300px;" src="{% static 'newsvendor/plots/1.png' %}" alt="Scatterplot">
@@ -292,6 +292,7 @@
                         }
                         else
                         {
+                            document.getElementById('email').value='';
                             alert("You have already taken the survey. ")
                         }
                     }
@@ -372,8 +373,12 @@
                             if(data.even==false){
                                 document.getElementById('even').style.display="block";
                             }
-                            else{
+                            else if(data.even==true){
                                 document.getElementById('even').style.display="none";
+                            }
+                            else{
+                                alert("Thank you for taking part in the survey. You will be receiving an email shortly");
+                                location.reload();
                             }
                     },
                     error: function(XMLHttpRequest, textStatus, errorThrown) 
