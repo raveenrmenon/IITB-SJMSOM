@@ -12,6 +12,22 @@ class user(models.Model):
 	def __str__(self):
 		return f"{self.name} - {self.email}"
 
+
+class answer(models.Model):
+	uid = models.PositiveIntegerField()
+	roundid = models.PositiveIntegerField()
+	point_forecast = models.PositiveIntegerField()
+	def __str__(self):
+		return f"{self.uid} : Round = {self.roundid} : pf = {self.pf}"
+ 
+
+class rounds(models.Model):
+	roundid = models.AutoField(primary_key = True)
+	actualdemand = models.PositiveIntegerField()
+	def __str__(self):
+		return f"{self.roundid}. {self.actualdemand=''} "
+
+
 # class answer(models.Model):
 # 	uid = models.PositiveIntegerField()
 # 	qid = models.PositiveIntegerField()
