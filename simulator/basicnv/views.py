@@ -5,6 +5,8 @@ from django.urls import reverse
 from django import forms
 from . import models
 
+from .models import *
+
 
 def index(request):
     return render(request,"basicnv/index.html")

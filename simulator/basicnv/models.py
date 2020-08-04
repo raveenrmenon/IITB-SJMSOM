@@ -18,7 +18,7 @@ class answers(models.Model):
 	roundid = models.PositiveIntegerField()
 	point_forecast = models.PositiveIntegerField()
 	def __str__(self):
-		return f"UserID = {self.uid} : Round = {self.roundid} : pf = {self.pf}"
+		return f"UserID = {self.uid} : Round = {self.roundid} : pf = {self.point_forecast}"
  
 
 class rounds(models.Model):
