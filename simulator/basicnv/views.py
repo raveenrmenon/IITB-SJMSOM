@@ -5,19 +5,17 @@ from django.urls import reverse
 from django import forms
 from . import models
 
-from .models import *
-# Create your views here.
 
 def index(request):
     return render(request,"basicnv/index.html")
 
-class checkEmail(View):
+class emailAuth(View):
     def get(self, request):
         email_id = request.GET['email']
-        a = user.objects.filter(email=email_id).exists()
+        a = users.objects.filter(email=email_id).exists()
         return HttpResponse(a)
 
-class userSubmit(View):
+class userRegister(View):
     def get(self, request):
         uemail = request.GET['email']
         uname = request.GET['name']
@@ -26,7 +24,7 @@ class userSubmit(View):
         uorganisation = request.GET['organisation']
         udesignation = request.GET['designation']
 
-        u = user(
+        u = users(
             name = uname,
             email = uemail,
             gender = ugender,
@@ -48,13 +46,13 @@ class userSubmit(View):
         return JsonResponse(q)
 
 
-class roundSubmit(View):
+class roundData(View):
     def get(self,request):
         uid = request.GET['uid']
         rid = int(request.GET['rid'])
         pf = request.GET['point_forecast']
 
-        a = answer(
+        a = answers(
             uid = uid,
             roundid = rid,
             point_forecast = pf

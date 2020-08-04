@@ -1,7 +1,7 @@
 from django.db import models
 
 # Create your models here.
-class user(models.Model):
+class users(models.Model):
 	uid = models.AutoField(primary_key=True)
 	name = models.CharField(max_length=40)
 	email = models.EmailField()
@@ -13,7 +13,7 @@ class user(models.Model):
 		return f"{self.name} - {self.email}"
 
 
-class answer(models.Model):
+class answers(models.Model):
 	uid = models.PositiveIntegerField()
 	roundid = models.PositiveIntegerField()
 	point_forecast = models.PositiveIntegerField()

@@ -82,26 +82,3 @@ class roundSubmit(View):
         else:
             msg = 'Thank you for taking part in the survey'
             return HttpResponse(msg)
-
-        # qid = request.GET['qid']
-        # uid = request.GET['uid']
-        # pf = request.GET['point_forecast']
-        # lb = request.GET['LB']
-        # ub = request.GET['UB']
-        # target_fill_rate = request.GET['target_fill_rate']
-        # a = answer(
-        #     uid = uid,
-        #     qid = qid,
-        #     point_forecast = pf,
-        #     LB = lb,
-        #     UB = ub,
-        #     target_fill_rate = target_fill_rate
-        #     )
-        # a.save()ro
-
-
-
-
-
-
-
