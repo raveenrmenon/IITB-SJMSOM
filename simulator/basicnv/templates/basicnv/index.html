@@ -226,17 +226,10 @@
             // doubt
             function renderGraph()
             {
-                if (plot1)
-                {
-                    plot1.destroy();
-                }
-                plot1=Plotly.plot( 'chartdiv', [{
+                plot1=Plotly.newPlot( 'chartdiv', [{
                 x: rno,
                 y: storedData }], { 
                 margin: { t: 0 } }, {showSendToCloud:true} );
-
-            /* Current Plotly.js version */
-            console.log( Plotly.BUILD );
             }
 
             document.addEventListener('DOMContentLoaded',()=>{
@@ -341,7 +334,8 @@
 
                             if(storedData.length<30)
                             {
-                            alert("Actual demand is"+act_demand+ "!");
+                            alert("Actual demand is "+act_demand+ "!");
+                            document.getElementById('forecast').value = '';
                             renderGraph();
                             document.getElementById('third').style.display='block';
                             document.getElementById('round').innerHTML=data['rid'];
