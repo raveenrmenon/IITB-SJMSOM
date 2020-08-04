@@ -219,8 +219,8 @@
         
         <script>
             var user=new Object();
-            var storedData=[3,7,9,12,16,13,18];
-            var rno=[1,2,3,4,5,6,7];
+            var storedData=[];
+            var rno=[];
             var plot1;
             
             // doubt
@@ -302,6 +302,11 @@
                             uid = data['uid'];
                             currid = data['rid'];
                             actualdemand = data['actualdemand']
+                            storedData=actualdemand;
+                            for(i=1;i<=currid;i++)
+                            {
+                                rno.push(i);
+                            }
                             document.getElementById('second').style.display='none';
                             document.getElementById('third').style.display='block';
                             document.getElementById('chartdiv').style.display='block';
@@ -331,7 +336,7 @@
                     {
                             act_demand=data['actualdemand'];
                             currid = data['rid'];
-                            storedData.push(point_forecast); // doubt shouldnt it be .push(act_demand)
+                            storedData.push(act_demand); // doubt shouldnt it be .push(act_demand)
                             rno.push(currid);
 
                             if(storedData.length<30)
