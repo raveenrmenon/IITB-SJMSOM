@@ -43,6 +43,7 @@ class userSubmit(View):
         q = {   
                 'uid' : u.uid,
                 'qid' : que.qid,
+                'data' : que.data,
                 'CO' : que.CO,
                 'CU' : que.CU,
                 'even' : que.even
@@ -74,6 +75,7 @@ class roundSubmit(View):
             que = question.objects.get(qid = newqid)
             q = {
             'qid': que.qid,
+            'data' :que.data,
             'CO': que.CO,
             'CU': que.CU,
             'even': que.even

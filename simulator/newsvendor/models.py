@@ -1,13 +1,16 @@
 from django.db import models
+from jsonfield import JSONField
+
 
 # Create your models here.
 class question(models.Model):
 	qid = models.AutoField(primary_key=True)
+	data = JSONField(default = list)
 	CO = models.PositiveIntegerField()
 	CU = models.PositiveIntegerField()
 	even = models.BooleanField()
 	def __str__(self):
-		return f"{self.qid}, CO = {self.CO}, CU = {self.CU}"
+		return f"{self.qid}, CO = {self.CO}, CU = {self.CU} {self.data}"
 
 
 class user(models.Model):
