@@ -6,6 +6,7 @@
         <title>Login</title>
             <meta charset="UTF-8">
             <link href="{% static 'newsvendor/index.css' %}" rel="stylesheet">
+            <link rel="stylesheet" type="text/css" href="jquery.jqplot.css" />
             <meta name="viewport" content="width=device-width, initial-scale=1">
           
     </head>
@@ -85,6 +86,7 @@
                     <div class="container">
                         <label for="name">Enter your Name</label>
                         <input type="text" id="name" name="name">
+            
                         <div class="row">
                             <div class="column">
                                 <div>
@@ -138,7 +140,7 @@
                 <p><button id="secondsubmit" style="width:auto;">Next</button></p> 
             </section>
 
-            <!-- <section id="third">
+            <section id="third">
                 
                 <div class="logo">
                     <p><h1 style="text-align: left; color: rgb(10, 10, 10);font-style:italic;">Decomposed Newsvendor Model
@@ -156,9 +158,9 @@
                             <h1><p><label style="text-align: left;">Round :  </label><label id="round" style="text-align:left">1</label></p></h1>
                         </div>
                         <div class="card">
-                            <img id="plot" style="width:500px;height:300px;" src="{% static 'newsvendor/plots/1.png' %}" alt="Scatterplot">
+                            <div id="chartdiv" style="height:400px;width:300px; "></div>
                             <div class="container">
-                                <div id="even">
+                                <!-- <div id="even">
                                     <table style="width:100%">
                                         <tr>
                                             <td>
@@ -171,7 +173,7 @@
                                         </td>
                                         </tr>
                                     </table>
-                                </div>
+                                </div> -->
                             </div>
                           </div>
                           
@@ -183,33 +185,21 @@
 
                         <div class="card">
                            
-                            <!-- <div class="container"> -->
-                                <!-- <table style="width:100%; margin-top:100px;">
+                            <div class="container"> 
+                                <table style="width:100%; margin-top:100px;">
                                     <tr>
         
                                         <td>
                                             <p><h3><label for="forecast">Point Forecast</label>
                                                 <input type="number" id="forecast" name="point_forecast"></h3></p>    
                                         </td>
-                                        <td>
-                                            <h3><p><label for="LB">Lower Bound</label>
-                                                <input type="number" id="LB" name="LB" onchange="calculate()"> 
-                                                </p></h3>
-                                        </td>
+
                                     </tr>
-                                        <td>
-                                            <h3><p><label for="UB">Upper Bound</label>
-                                                <input type="number" id="UB" name="UB" onclick="show_cost()">
-                                                </p></h3>
-                                        </td>
-                                        <td>
-                                            <p><h3><label for="fill">Target Fill Rate</label>
-                                                <input type="number" id="fill" name="target_fil_rate" ></h3></p>
-                                        </td>
-                                    </tr>
+
+
                                 </table>
-                            <!-- </div> -->
-                          <!-- </div>
+                            </div>
+                           </div>
 
                       
 
@@ -219,34 +209,48 @@
                     
                 </div>
                 
-            </section> --> --> -->
+            </section> 
             </form>
 
         </section>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <!--[if lt IE 9]><script language="javascript" type="text/javascript" src="excanvas.js"></script><![endif]-->
+        <script language="javascript" type="text/javascript" src="jquery.min.js"></script>
+        <script language="javascript" type="text/javascript" src="jquery.jqplot.min.js"></script>
+        <script language="javascript" type="text/javascript" src="jqplot.logAxisRenderer.js"></script>
+        
         <script>
             // let pic = ["{% static 'newsvendor/plots/1.png' %}","{% static 'newsvendor/plots/2.png' %}","{% static 'newsvendor/plots/3.png' %}","{% static 'newsvendor/plots/4.png' %}","{% static 'newsvendor/plots/5.png' %}",];
-            let imageNumber = 0;
-            change_image=function()
-            {
-                imageNumber=(imageNumber+1)%pic.length;
-                document.getElementById("plot").src=pic[imageNumber];
-            }
-            calculate=function()
-            {
-                var t=document.getElementById('LB').value;
-                var mean=document.getElementById('forecast').value;
-                document.getElementById('UB').value=Math.round(Math.exp(2*Math.log(mean)-Math.log(t)));
-            }
+            // let imageNumber = 0;
+            // change_image=function()
+            // {
+            //     imageNumber=(imageNumber+1)%pic.length;
+            //     document.getElementById("plot").src=pic[imageNumber];
+            // }
+            // calculate=function()
+            // {
+            //     var t=document.getElementById('LB').value;
+            //     var mean=document.getElementById('forecast').value;
+            //     document.getElementById('UB').value=Math.round(Math.exp(2*Math.log(mean)-Math.log(t)));
+            // }
 
-            show_cost=function()
-            {
-                // if(document.getElementById('even').style.display=='None'){
-                    document.getElementById('even').style.display="block";
-                // }
-            }
+            // show_cost=function()
+            // {
+              
+            //         document.getElementById('even').style.display="block";
+               
+            // }
             var user=new Object();
-            
+            var storedData=[3,7,9,12,16,13,18];
+            var plot1;
+
+            function renderGraph() {
+                if (plot1) {
+                    plot1.destroy();
+                }
+                plot1 = $.jqplot('chartdiv', [storedData], {seriesDefaults: {showMarker:false}, axes: {
+                    xaxis: {min:(storedData.length-30), max:(storedData.length+5)}, yaxis: {min:0, max:15}}});
+            }
 
             document.addEventListener('DOMContentLoaded',()=>{
                 var modal=document.getElementById('ethics');
@@ -273,6 +277,7 @@
                         {
                             document.getElementById('first').style.display='none';
                             document.getElementById('second').style.display='block';
+                            
                         }
                         else
                         {
@@ -308,10 +313,10 @@
                     success: function( data ) 
                     {
                             uid = data['uid'];
-                            currqid = data['qid'];
+                            currid = data['rid'];
                             document.getElementById('second').style.display='none';
                             document.getElementById('third').style.display='block';
-
+                            renderGraph();
                             // document.getElementById('CU').innerHTML=data['CU'];
                             // document.getElementById('CO').innerHTML=data['CO'];
                             // document.getElementById('round').innerHTML=data['qid'];
@@ -322,58 +327,65 @@
                 return false;
             }
 
-            // document.getElementById('roundSub').onclick=function(){
+            document.getElementById('roundSub').onclick=function(){
 
-            //     var question=new Object();
-            //     question.forecast=document.getElementById('forecast').value;
-            //     question.LB=document.getElementById('LB').value;
-            //     question.UB=document.getElementById('UB').value;
-            //     question.fill=document.getElementById('fill').value;
+                var round=new Object();
+                round.forecast=document.getElementById('forecast').value;
 
-            //     $.ajax(
-            //     {
-            //         type:"GET",
-            //         url: "/roundSubmit",
-            //         data:{
-            //             uid:uid,
-            //             qid:currqid,
-            //             point_forecast:question.forecast,
-            //             LB:question.LB,
-            //             UB:question.UB,
-            //             target_fill_rate:question.fill   
-            //         },
-            //         success: function( data ) 
-            //         {
-            //                 document.getElementById('third').style.display='block';
-            //                 document.getElementById('CU').innerHTML=data['CU'];
-            //                 document.getElementById('CO').innerHTML=data['CO'];
-            //                 document.getElementById('round').innerHTML=data['qid'];
-            //                 currqid = data['qid']
 
-            //                 change_image();
-            //                 document.getElementById('forecast').value="";
-            //                 document.getElementById('LB').value="";
-            //                 document.getElementById('UB').value="";
-            //                 document.getElementById('fill').value="";
+                $.ajax(
+                {
+                    type:"GET",
+                    url: "/roundSubmit",
+                    data:{
+                        uid:uid,
+                        rid:currid,
+                        point_forecast:round.forecast,
+                         
+                    },
+                    success: function( data ) 
+                    {
+                            
+                            
+                            act_demand=data['demand'];
+                            currid = data['rid'];
+                            storedData.push(point_forecast);
 
-            //                 if(data.even==false){
-            //                     document.getElementById('even').style.display="block";
-            //                 }
-            //                 else if(data.even==true){
-            //                     document.getElementById('even').style.display="none";
-            //                 }
-            //                 else{
-            //                     alert("Thank you for taking part in the survey. You will be receiving an email shortly");
-            //                     location.reload();
-            //                 }
-            //         },
-            //         error: function(XMLHttpRequest, textStatus, errorThrown) 
-            //         { 
-            //             alert("Status: " + textStatus); alert("Error: " + errorThrown); 
-            //         }   
-            //     })
-            //     return false;
-            // }
+                            if(storedData.length<30)
+                            {
+                            alert("Actual demand is"+act_demand+ "!");
+                            renderGraph();
+                            document.getElementById('third').style.display='block';
+                            document.getElementById('round').innerHTML=data['rid'];
+                            document.getElementById('forecast').value="";
+
+                            }
+                            else{
+                                alert("Thank you for taking part in the survey. You will be receiving an email shortly");
+                                location.reload();
+                            }
+                            
+
+
+
+                            // if(data.even==false){
+                            //     document.getElementById('even').style.display="block";
+                            // }
+                            // else if(data.even==true){
+                            //     document.getElementById('even').style.display="none";
+                            // }
+                            // else{
+                            //     alert("Thank you for taking part in the survey. You will be receiving an email shortly");
+                            //     location.reload();
+                            // }
+                    },
+                    error: function(XMLHttpRequest, textStatus, errorThrown) 
+                    { 
+                        alert("Status: " + textStatus); alert("Error: " + errorThrown); 
+                    }   
+                })
+                return false;
+            }
         
             })
         </script>
