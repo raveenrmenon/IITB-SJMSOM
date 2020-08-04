@@ -31,7 +31,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    'basicnv',
+    'basicnv.apps.BasicnvConfig',
     'newsvendor.apps.NewsvendorConfig',
     'django.contrib.admin',
     'django.contrib.auth',
