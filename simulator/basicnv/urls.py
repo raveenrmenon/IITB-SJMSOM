@@ -4,5 +4,7 @@ from .views import *
 
 app_name="basicnv"
 urlpatterns=[
-    path("",index,name="index")
+    path("",index,name="index"),
+    path("checkEmail",checkEmail.as_view()),
+    path("userSubmit",userSubmit.as_view())
 ]
