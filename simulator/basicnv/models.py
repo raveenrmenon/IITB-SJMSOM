@@ -18,14 +18,14 @@ class answer(models.Model):
 	roundid = models.PositiveIntegerField()
 	point_forecast = models.PositiveIntegerField()
 	def __str__(self):
-		return f"{self.uid} : Round = {self.roundid} : pf = {self.pf}"
+		return f"UserID = {self.uid} : Round = {self.roundid} : pf = {self.pf}"
  
 
 class rounds(models.Model):
 	roundid = models.AutoField(primary_key = True)
 	actualdemand = models.PositiveIntegerField()
 	def __str__(self):
-		return f"{self.roundid}. {self.actualdemand=''} "
+		return f"{self.roundid}. {self.actualdemand} "
 
 
 # class answer(models.Model):

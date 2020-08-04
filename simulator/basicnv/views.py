@@ -8,7 +8,6 @@ from . import models
 from .models import *
 # Create your views here.
 
-
 def index(request):
     return render(request,"basicnv/index.html")
 
@@ -36,12 +35,41 @@ class userSubmit(View):
             designation = udesignation
             )
         u.save()
-        # que = question.objects.get(qid = 1)
+        uid = u.uid
+        rids = rounds.objects.values_list('roundid', flat=True)
+        ac_demands = []
+        for i in range(0,min(len(rids),15)):
+            ac_demands.append(rounds.objects.get(roundid = rids[i]).actualdemand)
         q = {   
-                'uid' : u.uid,
-                # 'qid' : que.qid,
-                # 'CO' : que.CO,
-                # 'CU' : que.CU,
-                # 'even' : que.even
+                'uid' : uid,
+                'rid' : 15,
+                'actualdemand' : ac_demands
         }
         return JsonResponse(q)
+
+
+class roundSubmit(View):
+    def get(self,request):
+        uid = request.GET['uid']
+        rid = int(request.GET['rid'])
+        pf = request.GET['point_forecast']
+
+        a = answer(
+            uid = uid,
+            roundid = rid,
+            point_forecast = pf
+            )
+        a.save()
+        new_round = rounds.objects.filter(roundid__gt = rid)[:1]
+        if new_round:
+            newrid = new_round[0].roundid
+            newdemand = new_round[0].actualdemand
+            q = {
+            'uid' : uid,
+            'rid' : newrid,
+            'actualdemand' : newdemand
+            }
+            return JsonResponse(q)
+        else:
+            msg = 'Thank you for taking part in the survey'
+            return HttpResponse(msg)
