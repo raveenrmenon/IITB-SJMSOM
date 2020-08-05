@@ -238,11 +238,21 @@
             var week_no=[];
             var graph;
             
+            var layout = {
+                    title: 'Demand Pattern',
+                    xaxis: {
+                        title: 'Week '
+                    },
+                    yaxis: {
+                        title: 'Demand'
+                    }
+                    };
+
             function plotGraph()
             {
                 graph=Plotly.newPlot( 'plot', [{
                 x: week_no,
-                y: pattern }], { 
+                y: pattern }],layout, { 
                 margin: { t: 0 } }, {showSendToCloud:true} );
             }
             calculate=function()

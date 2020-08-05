@@ -224,12 +224,21 @@
             var rno=[];
             var plot1;
             
+            var layout = {
+                    title: 'Demand Pattern',
+                    xaxis: {
+                        title: 'Week Number'
+                    },
+                    yaxis: {
+                        title: 'Demand'
+                    }
+                    };
             
             function renderGraph()
             {
                 plot1=Plotly.newPlot( 'chartdiv', [{
                 x: rno,
-                y: storedData }], { 
+                y: storedData }], layout,{ 
                 margin: { t: 0 } }, {showSendToCloud:true} );
             }
 
