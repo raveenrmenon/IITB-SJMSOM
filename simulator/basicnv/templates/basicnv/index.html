@@ -152,12 +152,13 @@
                     <p> </p> 
                  </div>
                 
+                <div style="align-content:left;">
+                    <h1><p><label style="text-align: left;">Round :  </label><label id="round" style="text-align:left">1</label></p></h1>
+                </div>
                 
                 <div class="row">
                     <div class="column">
-                        <div style="align-content:left;">
-                            <h1><p><label style="text-align: left;">Round :  </label><label id="round" style="text-align:left">1</label></p></h1>
-                        </div>
+                        
                         <div class="card">
                             <div id="chartdiv" style="height:500px;width:600px; "></div>
                             <div class="container">
@@ -223,7 +224,7 @@
             var rno=[];
             var plot1;
             
-            // doubt
+            
             function renderGraph()
             {
                 plot1=Plotly.newPlot( 'chartdiv', [{
@@ -303,6 +304,7 @@
                             document.getElementById('second').style.display='none';
                             document.getElementById('third').style.display='block';
                             document.getElementById('chartdiv').style.display='block';
+                            document.getElementById('round').innerHTML=data['rid'];[]
                             renderGraph();
                     }
                 })
@@ -332,7 +334,7 @@
                             storedData.push(act_demand); // doubt shouldnt it be .push(act_demand)
                             rno.push(currid);
 
-                            if(storedData.length<30)
+                            if(data['actualdemand'])
                             {
                             alert("Actual demand is "+act_demand+ "!");
                             document.getElementById('forecast').value = '';

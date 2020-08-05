@@ -6,6 +6,7 @@
         <title>Login</title>
             <meta charset="UTF-8">
             <link href="{% static 'newsvendor/index.css' %}" rel="stylesheet">
+            <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
             <meta name="viewport" content="width=device-width, initial-scale=1">
           
     </head>
@@ -150,28 +151,30 @@
                  </div>
                 
                 
+                <div style="align-content:left;">
+                    <h1><p><label style="text-align: left;">Round :  </label><label id="round" style="text-align:left">1</label></p></h1>
+                </div>
                 <div class="row">
                     <div class="column">
-                        <div style="align-content:left;">
-                            <h1><p><label style="text-align: left;">Round :  </label><label id="round" style="text-align:left">1</label></p></h1>
-                        </div>
+                        
                         <div class="card">
-                            <img id="plot" style="width:500px;height:300px;" src="{% static 'newsvendor/plots/1.png' %}" alt="Scatterplot">
-                            <div class="container">
-                                <div id="even">
-                                    <table style="width:100%">
-                                        <tr>
-                                            <td>
-                                                <h4> <label>Underage Cost:</label>
-                                                    <p> <label id="CU">CU</label></p></h4>
-                                            </td>
-                                            <td>
-                                                <h4><label>Overage Cost:</label>
-                                                    <p><label id="CO">CO</label></p></h4>
+                            <div id="plot" style="max-width:600px;max-height:500px;"></div>
+                            <div id="even">
+                                <table style="width:100%; align-content: flex-start;">
+                                    <tr>
+                                        <td>
+                                            <h4> <label>Underage Cost:</label>
+                                                <p> <label id="CU">CU</label></p></h4>
                                         </td>
-                                        </tr>
-                                    </table>
-                                </div>
+                                        <td>
+                                            <h4><label>Overage Cost:</label>
+                                                <p><label id="CO">CO</label></p></h4>
+                                    </td>
+                                    </tr>
+                                </table>
+                            </div>
+                            <div class="container">
+
                             </div>
                           </div>
                           
@@ -182,61 +185,37 @@
                     <div class="column" >
 
                         <div class="card">
-                           
-                            <!-- <div class="container"> -->
-                                <table style="width:100%; margin-top:100px;">
-                                    <tr>
-        
-                                        <td>
-                                            <p><h3><label for="forecast">Point Forecast</label>
-                                                <input type="number" id="forecast" name="point_forecast"></h3></p>    
-                                        </td>
-                                        <td>
-                                            <h3><p><label for="LB">Lower Bound</label>
-                                                <input type="number" id="LB" name="LB" onchange="calculate()"> 
-                                                </p></h3>
-                                        </td>
-                                    </tr>
-                                        <td>
-                                            <h3><p><label for="UB">Upper Bound</label>
-                                                <input type="number" id="UB" name="UB" onclick="show_cost()">
-                                                </p></h3>
-                                        </td>
-                                        <td>
-                                            <p><h3><label for="fill">Target Fill Rate</label>
-                                                <input type="number" id="fill" name="target_fil_rate" ></h3></p>
-                                        </td>
-                                    </tr>
-                                </table>
-                            <!-- </div> -->
+                            <table style="width:100%; margin-top:150px;">
+                                <tr>
+    
+                                    <td>
+                                        <h3><p><label for="forecast">Point Forecast</label></p>
+                                            <p><input type="number" id="forecast" name="point_forecast"></p></h3> 
+                                    </td>
+                                    <td>
+                                        <h3><p><label for="LB">Lower Bound</label></p><p>
+                                            <input type="number" id="LB" name="LB" onchange="calculate()"> 
+                                            </p></h3>
+                                    </td>
+                                </tr>
+                                    <td>
+                                        <h3><p><label for="UB">Upper Bound</label></p><p>
+                                            <input type="number" id="UB" name="UB" onclick="show_cost()">
+                                            </p></h3>
+                                    </td>
+                                    <td>
+                                        <h3><p><label for="fill">Target Fill Rate</label></p>
+                                            <p><input type="number" id="fill" name="target_fil_rate" ></p></h3>
+                                    </td>
+                                </tr>
+                            </table>
+                            <div class="container">
+                                <p><button id="roundSub" style="width:auto;">Next</button></p>
+                            </div>
                           </div>
 
-                        <!-- <table style="width:100%; margin-top:100px;">
-                            <tr>
-
-                                <td>
-                                    <p><h3><label for="forecast">Point Forecast</label>
-                                        <input type="number" id="forecast" name="point_forecast"></h3></p>    
-                                </td>
-                                <td>
-                                    <h3><p><label for="LB">Lower Bound</label>
-                                        <input type="number" id="LB" name="LB" onchange="calculate()"> 
-                                        </p></h3>
-                                </td>
-                            </tr>
-                                <td>
-                                    <h3><p><label for="UB">Upper Bound</label>
-                                        <input type="number" id="UB" name="UB" onclick="show_cost()">
-                                        </p></h3>
-                                </td>
-                                <td>
-                                    <p><h3><label for="fill">Target Fill Rate</label>
-                                        <input type="number" id="fill" name="target_fil_rate" ></h3></p>
-                                </td>
-                            </tr>
-                        </table> -->
-
-                        <p><button id="roundSub" style="width:auto;">Next</button></p>
+                      
+                        
                         </table>
                     </div>
                     
@@ -248,12 +227,23 @@
         </section>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <script>
-            let pic = ["{% static 'newsvendor/plots/1.png' %}","{% static 'newsvendor/plots/2.png' %}","{% static 'newsvendor/plots/3.png' %}","{% static 'newsvendor/plots/4.png' %}","{% static 'newsvendor/plots/5.png' %}",];
-            let imageNumber = 0;
-            change_image=function()
+            // let pic = ["{% static 'newsvendor/plots/1.png' %}","{% static 'newsvendor/plots/2.png' %}","{% static 'newsvendor/plots/3.png' %}","{% static 'newsvendor/plots/4.png' %}","{% static 'newsvendor/plots/5.png' %}",];
+            // let imageNumber = 0;
+            // change_image=function()
+            // {
+            //     imageNumber=(imageNumber+1)%pic.length;
+            //     document.getElementById("plot").src=pic[imageNumber];
+            // }
+            var pattern=[];
+            var week_no=[];
+            var graph;
+            
+            function plotGraph()
             {
-                imageNumber=(imageNumber+1)%pic.length;
-                document.getElementById("plot").src=pic[imageNumber];
+                graph=Plotly.newPlot( 'plot', [{
+                x: week_no,
+                y: pattern }], { 
+                margin: { t: 0 } }, {showSendToCloud:true} );
             }
             calculate=function()
             {
@@ -332,12 +322,20 @@
                     {
                             uid = data['uid'];
                             currqid = data['qid'];
-                            values = data['data']
+                            values = data['data'];
+                            pattern=values;
+                            var w_no=[];
+                            for(i=1;i<=pattern.length;i++)
+                            {
+                                w_no.push(i);
+                            }
+                            week_no=w_no;
                             document.getElementById('second').style.display='none';
                             document.getElementById('third').style.display='block';
                             document.getElementById('CU').innerHTML=data['CU'];
                             document.getElementById('CO').innerHTML=data['CO'];
                             document.getElementById('round').innerHTML=data['qid'];
+                            plotGraph();
 
                             
                     }
@@ -371,9 +369,18 @@
                             document.getElementById('CU').innerHTML=data['CU'];
                             document.getElementById('CO').innerHTML=data['CO'];
                             document.getElementById('round').innerHTML=data['qid'];
-                            currqid = data['qid']
+                            currqid = data['qid'];
+                            values=data['data'];
 
-                            change_image();
+                            // change_image();
+                            pattern=values;
+                            var w_no=[];
+                            for(i=1;i<=pattern.length;i++)
+                            {
+                                w_no.push(i);
+                            }
+                            week_no=w_no;
+                            plotGraph();
                             document.getElementById('forecast').value="";
                             document.getElementById('LB').value="";
                             document.getElementById('UB').value="";
