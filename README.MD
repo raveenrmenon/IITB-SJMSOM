@@ -1,1 +1,1 @@
-## Files for the survey for the Decomposed Newsvendor model simulator 
+## Files for the survey for the Newsvendor model simulations
