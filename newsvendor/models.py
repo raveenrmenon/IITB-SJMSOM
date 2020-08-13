@@ -31,4 +31,6 @@ class answer(models.Model):
 	LB = models.PositiveIntegerField()
 	UB = models.PositiveIntegerField()
 	target_fill_rate = models.DecimalField(max_digits=5, decimal_places=2)
+	def __str__(self):
+		return f"User = {self.uid}, Q = {self.qid}, Point Forecast = {self.point_forecast}"
 	
