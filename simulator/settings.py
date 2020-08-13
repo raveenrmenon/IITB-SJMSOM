@@ -27,7 +27,8 @@ SECRET_KEY = '55s$-!xq4dpubgpl+6ar4z2b-^@ko03vzc8v)ejjjmy=h)#zi&'
 DEBUG = True
 
 ALLOWED_HOSTS = [
-    '0.0.0.0'
+    '0.0.0.0',
+    'newsvendor.herokuapp.com',
 ]
 
 
