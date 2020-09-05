@@ -27,8 +27,7 @@ SECRET_KEY = '55s$-!xq4dpubgpl+6ar4z2b-^@ko03vzc8v)ejjjmy=h)#zi&'
 DEBUG = True
 
 ALLOWED_HOSTS = [
-    '0.0.0.0',
-    'newsvendor.herokuapp.com',
+    '*'
 ]
 
 
@@ -37,6 +36,7 @@ ALLOWED_HOSTS = [
 INSTALLED_APPS = [
     'basicnv.apps.BasicnvConfig',
     'newsvendor.apps.NewsvendorConfig',
+    'beergame.apps.BeergameConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',

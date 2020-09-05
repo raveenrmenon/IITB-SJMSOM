@@ -18,6 +18,7 @@ from django.urls import include,path
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('beergame/',include("beergame.urls")),
     path('decomposednv/',include("newsvendor.urls")),
     path('basicnv/',include("basicnv.urls"))
 ]
